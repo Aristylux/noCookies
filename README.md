@@ -1,2 +1,5 @@
 # noCookies
-noCookies is an extension for firefox browser who hide popup cookie
+
+noCookies is an extension for firefox browser who hide popup cookie.  
+
+

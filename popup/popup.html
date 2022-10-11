@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="popup.css" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self';"/>
+    </head>
+    <body>
+        <div id="popup-content">
+            <div id="title_container">
+                <img src="../icons/cookies-512.png" />
+                <h1>No Cookies</h1>
+            </div>
+            <nav>
+                <ul id="navigation">
+                    
+                    <li class="text" title="discovery">
+                        <a id="nav_but_discovery" class="active" onclick="navigationAction(nav_but_discovery)" >Decouverte</a>
+                    </li>
+                    <li class="text" title="about">
+                        <a id="nav_but_about" class=" " onclick="navigationAction(nav_but_about)" >A propos</a>
+                    </li>
+                    <li id="setting" title="settings">
+                        <img id="nav_but_settings" onclick="navigationAction(nav_but_settings)" src="../icons/gear.png" />
+                    </li>
+                </ul>
+            
+            </nav>
+            <div id="content_container" >
+                <div id="discovery_container" class="container">
+                    <h1>Elements enlevés</h1>
+                    <div id="hidden_element"></div>
+                </div>
+                <div id="about_container" class="container" hidden>
+                    <h1>A Propos</h1>
+                    <p>
+                        Envie d'apprendre à faire une extension web,<br />
+                        Marre des demandes de cookies sur chaque site,<br />
+                        L'idée mets venue comme ça.<br />
+                    </p>
+                </div>
+                <div id="settings_container" class="container" hidden>
+                    <h1>Paramètres</h1>
+                    <form id="settings_form">
+                        <div class="ligne-form">
+                            <input
+                                type="radio"
+                                id="hide-cookies"
+                                name="cookies"
+                                value="hide"
+                                title="Efface les fenetres seulement."
+                                checked
+                            />
+                            <label
+                                for="hide-cookies"
+                                title="Efface les fenetres seulement."
+                                >Enleve les popups</label
+                            ><br />
+                        </div>
+                        <div class="ligne-form">
+                            <input
+                                type="radio"
+                                id="accept-cookies"
+                                name="cookies"
+                                value="accept"
+                                title="Clique sur le bouton 'Accepter'."
+                                disabled
+                            />
+                            <label
+                                for="accept-cookies"
+                                title="Clique sur le bouton 'Accepter'."
+                                >Accepter les cookies</label
+                            ><br />
+                        </div>
+                        <div class="ligne-form">
+                            <input
+                                type="radio"
+                                id="dontaccept-cookies"
+                                name="cookies"
+                                value="dontaccept"
+                                title="Clique sur le bouton 'Ne pas Accepter'."
+                                disabled
+                            />
+                            <label
+                                for="dontaccept-cookies"
+                                title="Clique sur le bouton 'Ne pas Accepter'."
+                                >Ne pas accepter les cookies</label
+                            >
+                        </div>
+                    </form>
+                </div>
+                <!--
+                <div class="button" onclick="loadPage()">Enregistrer</div>
+                -->
+            </div>
+        </div>
+        <div id="error-content" hidden>
+            <p>Can't find cookie popup</p>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>
