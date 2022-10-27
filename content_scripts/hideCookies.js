@@ -17,10 +17,21 @@ if (page !== "popup.html") {
     data.popup_cookie_content = "privilage";
 }
 
-sendData();
+testOverflow();
+
+sendDataToPopup();
 console.log("hideCookies: end");
 
 // ----------------------- End Of program ---------------------
+
+/*
+ * testOverflow:
+ * enable scrolling.
+ */
+function testOverflow() {
+    //console.log(document.body.style.overflow);
+    document.body.style.setProperty('overflow', 'scroll');
+}
 
 function search() {
     let body = document.getElementsByTagName("body");
@@ -78,11 +89,11 @@ function detectTagName(tagName) {
 }
 
 /*
- * sendData:
+ * sendDataToPopup:
  * set data in storage
  * execute popup.js
  */
-function sendData() {
+function sendDataToPopup() {
     console.info(data);
     browser.storage.local.set(
         {
