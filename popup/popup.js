@@ -5,17 +5,15 @@ browser.storage.local.get('updateView', function(items){
     //browser.storage.local.remove('updateView');
 });
 
-
-function assignTextToTextArea(newText){
-    document.getElementById('hidden_element').innerHTML = newText;
-}
-
-
 browser.storage.local.get('locale', function(items){
     document.getElementById(items.locale).classList.add("active");
     selectLanguage(items.locale);
 });
 
+
+function assignTextToTextArea(newText){
+    document.getElementById('hidden_element').innerHTML = newText;
+}
 
 // ---------------- Container --------------
 
