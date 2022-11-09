@@ -13,34 +13,33 @@
             </div>
             <nav>
                 <ul id="navigation">
-                    
                     <li class="text" title="discovery">
-                        <a id="nav_but_discovery" class="active">Decouverte</a>
+                        <a id="nav_but_discovery" class="button_navigation translate active">Decouverte</a>
                     </li>
                     <li class="text" title="about">
-                        <a id="nav_but_about" class=" ">A propos</a>
+                        <a id="nav_but_about" class="button_navigation translate ">A propos</a>
                     </li>
                     <li id="setting" title="settings">
-                        <img id="nav_but_settings" src="../icons/gear.png" />
+                        <img id="nav_but_settings" class="button_navigation translate" src="../icons/gear.png" />
                     </li>
                 </ul>
             
             </nav>
             <div id="content_container" >
                 <div id="discovery_container" class="container">
-                    <h1>Elements enlevés</h1>
+                    <h1 id="title_discovery_container" class="translate" >Elements enlevés</h1>
                     <div id="hidden_element"></div>
                 </div>
                 <div id="about_container" class="container" hidden>
-                    <h1>A Propos</h1>
-                    <p>
+                    <h1 id="title_about_container" class="translate">A Propos</h1>
+                    <p id="text_content_about_container" class="translate">
                         Envie d'apprendre à faire une extension web,<br />
                         Marre des demandes de cookies sur chaque site,<br />
                         L'idée mets venue comme ça.<br />
                     </p>
                 </div>
                 <div id="settings_container" class="container" hidden>
-                    <h1>Paramètres</h1>
+                    <h1 id="title_settings_container" class="translate" >Paramètres</h1>
                     <form id="settings_form">
                         <div class="ligne-form">
                             <input
@@ -52,6 +51,8 @@
                                 checked
                             />
                             <label
+                                id="label_setting_hide_cookies" 
+                                class="translate"
                                 for="hide-cookies"
                                 title="Efface les fenetres seulement."
                                 >Enleve les popups</label
@@ -67,6 +68,8 @@
                                 disabled
                             />
                             <label
+                                id="label_setting_accept_cookies" 
+                                class="translate"
                                 for="accept-cookies"
                                 title="Clique sur le bouton 'Accepter'."
                                 >Accepter les cookies</label
@@ -82,12 +85,23 @@
                                 disabled
                             />
                             <label
+                                id="label_setting_dontaccept_cookies" 
+                                class="translate"
                                 for="dontaccept-cookies"
                                 title="Clique sur le bouton 'Ne pas Accepter'."
                                 >Ne pas accepter les cookies</label
                             >
                         </div>
                     </form>
+                    <h1 id="title_settings_container_languages" class="translate" >Langues</h1>
+                    <ul id="languages">
+                        <li id="fr" title="Français">
+                            <img id="locale_fr" class="button_language" src="../icons/fr.png" />
+                        </li>
+                        <li id="en" title="English">
+                            <img id="locale_en" class="button_language" src="../icons/en.png" />
+                        </li>
+                    </ul>
                 </div>
                 <!--
                 <div class="button" onclick="loadPage()">Enregistrer</div>
@@ -97,6 +111,9 @@
         <div id="error-content" hidden>
             <p>Can't find cookie popup</p>
         </div>
+        <script src="./locales/fr.js"></script>
+        <script src="./locales/en.js"></script>
         <script src="popup.js"></script>
+        <script src="translation.js"></script>
     </body>
 </html>
