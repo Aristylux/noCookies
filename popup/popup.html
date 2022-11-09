@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="popup.css" />
+        <link rel="stylesheet" href="switch.css" />
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self';"/>
     </head>
     <body>
@@ -13,13 +14,13 @@
             </div>
             <nav>
                 <ul id="navigation">
-                    <li class="text" title="discovery">
+                    <li class="text">
                         <a id="nav_but_discovery" class="button_navigation translate active">Decouverte</a>
                     </li>
-                    <li class="text" title="about">
+                    <li class="text">
                         <a id="nav_but_about" class="button_navigation translate ">A propos</a>
                     </li>
-                    <li id="setting" title="settings">
+                    <li id="setting">
                         <img id="nav_but_settings" class="button_navigation translate" src="../icons/gear.png" />
                     </li>
                 </ul>
@@ -27,10 +28,10 @@
             </nav>
             <div id="content_container" >
                 <div id="discovery_container" class="container">
-                    <label class="Switch">
-                        <input type="checkbox" class="switch_input" checked>
+                    <label class="switch">
+                        <input id="checkbox" type="checkbox" class="switch_input"  >
                         <span class="slider"></span>
-                      </label>
+                    </label>
                     <h1 id="title_discovery_container" class="translate" >Elements enlevés</h1>
                     <div id="hidden_element"></div>
                 </div>
