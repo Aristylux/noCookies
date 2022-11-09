@@ -1,6 +1,5 @@
 console.log("load");
 
-/*
 browser.storage.local.get('updateView', function(items){
     assignTextToTextArea(items.updateView);
     //browser.storage.local.remove('updateView');
@@ -10,7 +9,19 @@ browser.storage.local.get('locale', function(items){
     document.getElementById(items.locale).classList.add("active");
     selectLanguage(items.locale);
 });
-*/
+
+browser.storage.local.get('websiteName', function(item){
+    let checkbox = document.getElementById("checkbox");
+    checkbox.checked = false;
+    browser.storage.local.get('excludedList', function(items){
+        for ( i = 0; i < items.excludedList.length; i ++){
+            if(items.excludedList[i] == item.websiteName)
+                checkbox.checked = true;                
+        }
+    });
+});
+
+// ------ END Program ----
 
 function assignTextToTextArea(newText){
     document.getElementById('hidden_element').innerHTML = newText;
@@ -52,21 +63,56 @@ function controlButtonSettings(){
     document.getElementById("nav_but_settings").classList.add("active");
 }
 
-// ---------------------- Check button ------------
-var checkbox = document.getElementById("checkbox");
+// ---------------------- Switch button ------------
 
+function gotWebSiteName(item) {
+    browser.storage.local.get('excludedList', function(items){
+        items.excludedList.push(item.websiteName);
+        assignTextToTextArea(items.excludedList);//debug
+        browser.storage.local.set({excludedList:  items.excludedList});
+    });
+}
+
+function delateWebSiteName(item){
+    browser.storage.local.get('excludedList', function(items){
+        for ( i = 0; i < items.excludedList.length; i ++){
+            if(items.excludedList[i] === item.websiteName){
+                items.excludedList.splice(i, 1);
+                assignTextToTextArea(items.excludedList);//debug
+                browser.storage.local.set({excludedList:  items.excludedList});
+            }          
+        }
+    });
+}
+
+function onError(error) {
+    console.error(error)
+}
+
+var checkbox = document.getElementById("checkbox");
 checkbox.addEventListener('change', function () {
   if (checkbox.checked) {
-    // do this
-    // add path to exluded list
-    path = window.location.pathname;
-
     console.log('Checked');
-  } else {
+    // do this
+    // add website to exluded list
+    browser.storage.local.get("websiteName").then(gotWebSiteName, onError);
+    //refresh page
     
-    // remove path to exluded list
+  } else {
     console.log('Not checked');
+    // remove website to exluded list
+    browser.storage.local.get("websiteName").then(delateWebSiteName, onError);
   }
+});
+
+// ----- button -----
+
+var button = document.getElementById("button_delete_data");
+button.addEventListener('click', function () {
+    browser.storage.local.get('excludedList', function(items){
+        items.excludedList = [];    //reset       //browser.storage.session.clear();   
+        browser.storage.local.set({excludedList:  items.excludedList});
+    });
 });
 
 console.log("End");

@@ -5,7 +5,7 @@ buttons_lang.forEach(function (button) {
     button.addEventListener("click", () => {
         buttons_lang.forEach((btn) => btn.classList.remove("active"));
         button.classList.add("active");
-        //browser.storage.local.set({locale: button.id});
+        browser.storage.local.set({locale: button.id});
         selectLanguage(button.id);
     });
 });
