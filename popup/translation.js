@@ -5,12 +5,12 @@ buttons_lang.forEach(function (button) {
     button.addEventListener("click", () => {
         buttons_lang.forEach((btn) => btn.classList.remove("active"));
         button.classList.add("active");
+        browser.storage.local.set({locale: button.id});
         selectLanguage(button.id);
     });
 });
 
 function selectLanguage(lang){
-    //browser.storage.local.set({locale: lang});
     switch (lang) {
         case "locale_fr":
             setLanguage(locale_fr);
