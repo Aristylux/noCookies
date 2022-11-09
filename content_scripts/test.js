@@ -1,3 +1,5 @@
+//deprecated
+
 document.body.textContent = "";
 
 let header = document.createElement('h1');
