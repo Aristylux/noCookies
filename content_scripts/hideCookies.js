@@ -28,6 +28,10 @@ browser.storage.local.get('excludedList', function(items){
         search();
     else
         data.popup_cookie_content = "privilage";
+    
+    browser.tabs.excuteScript({
+        file: "popup/popup.js",
+    });
 });
 
 /*

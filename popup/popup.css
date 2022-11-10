@@ -204,3 +204,13 @@ form {
 }
 
 /* -------------- END Lang ---------*/
+
+#desactivate_extension {
+    display: grid;
+    grid-template-columns: var(--switch-width) auto;
+    padding-left: 30px;
+}
+
+#desactivate_extension_info {
+    margin-left: 30px;
+}

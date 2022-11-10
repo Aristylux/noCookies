@@ -28,11 +28,19 @@
             </nav>
             <div id="content_container" >
                 <div id="discovery_container" class="container">
-                    <label class="switch">
-                        <input id="checkbox" type="checkbox" class="switch_input"  >
-                        <span class="slider"></span>
-                    </label>
-                    <h1 id="title_discovery_container" class="translate" >Elements enlevés</h1>
+                    <div id="desactivate_extension">
+                        <div id="switch_container">
+                            <label class="switch">
+                                <input id="checkbox" type="checkbox" class="switch_input"  >
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div id="desactivate_extension_info">
+                            <div id="text_content_switch" class="translate"></div>
+                            <div id="website">test.com</div>
+                        </div>
+                    </div>
+                    <h1 id="title_discovery_container" class="translate">Elements enlevés</h1>
                     <div id="hidden_element"></div>
                 </div>
                 <div id="about_container" class="container" hidden>
@@ -107,7 +115,7 @@
                             <img id="locale_en" class="button_language" src="../icons/en.png" />
                         </li>
                     </ul>
-                    <div id="button_delete_data" class="button translate">Effacer les données</div>
+                    <div id="button_delete_data" class="button translate"></div>
                 </div>
                 <!--
                 <div class="button" onclick="loadPage()">Enregistrer</div>

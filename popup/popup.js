@@ -1,7 +1,8 @@
 console.log("load");
 
-browser.storage.local.get('updateView', function(items){
-    assignTextToTextArea(items.updateView);
+browser.storage.local.get('websiteName', function(items){
+    //assignTextToTextArea(items.updateView);
+    document.getElementById('website').innerHTML = items.websiteName;
     //browser.storage.local.remove('updateView');
 });
 

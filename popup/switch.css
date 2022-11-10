@@ -4,11 +4,20 @@
     --switch-margin : 4px;
 }
 
-.switch {
+#switch_container {
     position: relative;
+}
+
+.switch {
+    /*position: relative;*/
     display: inline-block;
     width: var(--switch-width);
     height: var(--switch-height);
+
+    position: absolute;
+    top: 50%;
+    margin-top: calc((var(--switch-height) / 2 ) * -1);
+
 }
 
 .switch_input {
