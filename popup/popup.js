@@ -1,17 +1,29 @@
 console.log("load");
 
-browser.storage.local.get('websiteName', function(items){
-    //assignTextToTextArea(items.updateView);
-    document.getElementById('website').innerHTML = items.websiteName;
+/*
+ * Set content popup cookie
+ */
+browser.storage.local.get('updateView', function(items){
+    document.getElementById('hidden_element').innerHTML = items.updateView;
     //browser.storage.local.remove('updateView');
 });
 
+/*
+ * Set language
+ */
 browser.storage.local.get('locale', function(items){
     document.getElementById(items.locale).classList.add("active");
     selectLanguage(items.locale);
 });
 
+/*
+ * Set website name
+ * Set switch enable/disable 
+ */
 browser.storage.local.get('websiteName', function(item){
+
+    document.getElementById('website').innerHTML = item.websiteName;
+
     let checkbox = document.getElementById("checkbox");
     checkbox.checked = false;
     browser.storage.local.get('excludedList', function(items){
@@ -23,10 +35,6 @@ browser.storage.local.get('websiteName', function(item){
 });
 
 // ------ END Program ----
-
-function assignTextToTextArea(newText){
-    document.getElementById('hidden_element').innerHTML = newText;
-}
 
 // ---------------- Container --------------
 
@@ -94,16 +102,14 @@ var checkbox = document.getElementById("checkbox");
 checkbox.addEventListener('change', function () {
   if (checkbox.checked) {
     console.log('Checked');
-    // do this
     // add website to exluded list
     browser.storage.local.get("websiteName").then(gotWebSiteName, onError);
-    //refresh page
-    
   } else {
     console.log('Not checked');
     // remove website to exluded list
     browser.storage.local.get("websiteName").then(delateWebSiteName, onError);
   }
+  //refresh page
 });
 
 // ----- button -----
