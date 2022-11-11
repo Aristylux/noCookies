@@ -1,5 +1,6 @@
 console.log("load");
 
+/* --- get data from algorithme --- */
 /*
  * Set content popup cookie
  */
@@ -33,6 +34,25 @@ browser.storage.local.get("websiteName", function (item) {
     });
 });
 
+/* ------- Definitions -------- */
+/* --- Definition element Container --- */
+let discovery_button = document.getElementById("nav_but_discovery");
+let about_button = document.getElementById("nav_but_about");
+let setting_button = document.getElementById("nav_but_settings");
+
+/* --- Definition element Switch --- */
+let checkbox = document.getElementById("checkbox");
+
+/* --- Definition element Button --- */
+let button = document.getElementById("button_delete_data");
+
+/* ------- Events Listener -------- */
+/* --- Event element Container --- */
+discovery_button.addEventListener("click", controlButtonDiscovery);
+about_button.addEventListener("click", controlButtonAbout);
+setting_button.addEventListener("click", controlButtonSettings);
+
+
 // ------ END Program ----
 
 // ---------------- Container --------------
@@ -48,16 +68,6 @@ function hideContainer() {
         content.hidden = true;
     }
 }
-
-document
-    .getElementById("nav_but_discovery")
-    .addEventListener("click", controlButtonDiscovery);
-document
-    .getElementById("nav_but_about")
-    .addEventListener("click", controlButtonAbout);
-document
-    .getElementById("nav_but_settings")
-    .addEventListener("click", controlButtonSettings);
 
 function controlButtonDiscovery() {
     hideContainer();
@@ -82,8 +92,7 @@ function controlButtonSettings() {
 function gotWebSiteName(item) {
     browser.storage.local.get("excludedList", function (items) {
         items.excludedList.push(item.websiteName);
-        //assignTextToTextArea(items.excludedList); //debug
-        console.log("add item : " + items.excludedList);
+        console.log("list : " + items.excludedList);
         browser.storage.local.set({ excludedList: items.excludedList });
     });
 }
@@ -93,8 +102,7 @@ function delateWebSiteName(item) {
         for (i = 0; i < items.excludedList.length; i++) {
             if (items.excludedList[i] === item.websiteName) {
                 items.excludedList.splice(i, 1);
-                //assignTextToTextArea(items.excludedList); //debug
-                console.log("add item : " + items.excludedList);
+                console.log("list : " + items.excludedList);
                 browser.storage.local.set({ excludedList: items.excludedList });
             }
         }
@@ -105,7 +113,7 @@ function onError(error) {
     console.error(error);
 }
 
-var checkbox = document.getElementById("checkbox");
+
 checkbox.addEventListener("change", function () {
     if (checkbox.checked) {
         console.log("Checked");
@@ -118,9 +126,7 @@ checkbox.addEventListener("change", function () {
             .get("websiteName")
             .then(delateWebSiteName, onError);
     }
-    //refresh page
-    //document.location.reload();
-
+    
     function sendMessage(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
             command: "refresh",
@@ -135,17 +141,10 @@ checkbox.addEventListener("change", function () {
         .query({ active: true, currentWindow: true })
         .then(sendMessage)
         .catch(reportError);
-
-    /*
-    browser.tabs.sendMessage({
-        refresh: true,
-    });
-    */
 });
 
-// ----- button -----
+// ----- Button -----
 
-var button = document.getElementById("button_delete_data");
 button.addEventListener("click", function () {
     browser.storage.local.get("excludedList", function (items) {
         items.excludedList = []; //reset       //browser.storage.session.clear();
