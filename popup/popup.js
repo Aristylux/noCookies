@@ -149,6 +149,7 @@ button.addEventListener("click", function () {
     browser.storage.local.get("excludedList", function (items) {
         items.excludedList = []; //reset       //browser.storage.session.clear();
         browser.storage.local.set({ excludedList: items.excludedList });
+        //browser.storage.session.clear();
     });
 });
 

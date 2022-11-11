@@ -23,6 +23,8 @@ browser.storage.local.set({websiteName: data.websiteName});
 browser.storage.local.get('excludedList', function(items){
     let isExcludedSite = false;
     console.warn("item : " + items.excludedList);
+    if (items.excludedList == undefined)
+        items.excludedList = [];
     for ( i = 0; i < items.excludedList.length; i ++){
         console.warn(items.excludedList[i]);
         if(items.excludedList[i] == data.websiteName)
@@ -34,9 +36,7 @@ browser.storage.local.get('excludedList', function(items){
     else
         data.popup_cookie_content = "privilage";
     
-    browser.tabs.excuteScript({
-        file: "popup/popup.js",
-    });
+    //executeScriptPopup();
 });
 
 /*
@@ -58,6 +58,12 @@ sendDataToPopup();
 console.log("hideCookies: end");
 
 // ----------------------- End Of program ---------------------
+
+function executeScriptPopup () {
+    browser.tabs.excuteScript({
+        file: "popup/popup.js",
+    });
+}
 
 /*
 function gotExcludedList(item){
@@ -143,9 +149,7 @@ function sendDataToPopup() {
             updateView: data.popup_cookie_content,
         },
         function () {
-            browser.tabs.excuteScript({
-                file: "popup/popup.js",
-            });
+            executeScriptPopup();
         }
     );
 }
