@@ -23,10 +23,10 @@ browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             file: "content_scripts/hideCookies.js",
         });
     }
-    /*
+    /*    
     if (changeInfo.url) {
         console.log("send");
-        browser.runtime.sendMessage(tab.id,{msg: changeInfo.url});
+        //browser.runtime.sendMessage(tab.id,{msg: changeInfo.url});
     }
     */
 });

@@ -1,13 +1,18 @@
 console.log("hideCookies: start");
 
-let data = {
+var data = {
     detection_cookie: false,
     hide_count: 0,
     popup_cookie_content: "nothing",
     websiteName: ""
 };
 
-let path = window.location.pathname;
+browser.runtime.onMessage.addListener((message) => {
+    console.error(message);
+    document.location.reload();
+});
+
+var path = window.location.pathname;
 data.websiteName = window.location.hostname;
 
 console.info("Web site name : " + data.websiteName);
