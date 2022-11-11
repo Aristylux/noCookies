@@ -1,12 +1,45 @@
 console.log("hideCookies: start");
 
-data = {
+var data = {
     detection_cookie: false,
     hide_count: 0,
     popup_cookie_content: "nothing",
+    websiteName: ""
 };
 
-path = window.location.pathname;
+browser.runtime.onMessage.addListener((message) => {
+    console.error(message);
+    document.location.reload();
+});
+
+var path = window.location.pathname;
+data.websiteName = window.location.hostname;
+
+console.info("Web site name : " + data.websiteName);
+
+browser.storage.local.set({websiteName: data.websiteName});
+
+//exclude sites
+browser.storage.local.get('excludedList', function(items){
+    let isExcludedSite = false;
+    console.warn("item : " + items.excludedList);
+    for ( i = 0; i < items.excludedList.length; i ++){
+        console.warn(items.excludedList[i]);
+        if(items.excludedList[i] == data.websiteName)
+            isExcludedSite = true;
+    }
+
+    if (!isExcludedSite)
+        search();
+    else
+        data.popup_cookie_content = "privilage";
+    
+    browser.tabs.excuteScript({
+        file: "popup/popup.js",
+    });
+});
+
+/*
 page = path.split("/").pop();
 console.log(path);
 console.log(page);
@@ -16,13 +49,23 @@ if (page !== "popup.html") {
 } else {
     data.popup_cookie_content = "privilage";
 }
+*/
 
+//Test overflow scrolling
 testOverflow();
 
 sendDataToPopup();
 console.log("hideCookies: end");
 
 // ----------------------- End Of program ---------------------
+
+/*
+function gotExcludedList(item){
+    console.log("item : " + item.excludedList);
+
+    //if(items.excludedList != undefined)
+        //assignTextToTextArea(items.excludedList);
+}*/
 
 /*
  * testOverflow:
