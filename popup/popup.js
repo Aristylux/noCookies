@@ -5,6 +5,7 @@ console.log("load");
  * Set content popup cookie
  */
 browser.storage.local.get("updateView", function (items) {
+    console.info("updateView : " + items.updateView);
     document.getElementById("hidden_element").innerHTML = items.updateView;
     //browser.storage.local.remove('updateView');
 });
@@ -13,6 +14,12 @@ browser.storage.local.get("updateView", function (items) {
  * Set language
  */
 browser.storage.local.get("locale", function (items) {
+    console.info("locale : " + items.locale);
+    if(items.locale == undefined){
+        items.locale = "locale_" + navigator.language[0] + navigator.language[1];
+        console.log("locale: " + items.locale);
+        browser.storage.local.set({locale: items.locale});
+    }
     document.getElementById(items.locale).classList.add("active");
     selectLanguage(items.locale);
 });
@@ -22,6 +29,7 @@ browser.storage.local.get("locale", function (items) {
  * Set switch enable/disable
  */
 browser.storage.local.get("websiteName", function (item) {
+    console.info("websiteName : " + item.websiteName);
     document.getElementById("website").innerHTML = item.websiteName;
 
     let checkbox = document.getElementById("checkbox");
@@ -32,6 +40,14 @@ browser.storage.local.get("websiteName", function (item) {
                 checkbox.checked = true;
         }
     });
+});
+
+browser.storage.local.get("excludedList", function (items) {
+    if(items.excludedList == undefined){
+        console.warn("excludedList: " + items.excludedList); //"excludedList: undefined"
+        items.excludedList = [];
+        browser.storage.local.set({ excludedList: items.excludedList });
+    }    
 });
 
 /* ------- Definitions -------- */
@@ -97,7 +113,7 @@ function gotWebSiteName(item) {
     });
 }
 
-function delateWebSiteName(item) {
+function deleteWebSiteName(item) {
     browser.storage.local.get("excludedList", function (items) {
         for (i = 0; i < items.excludedList.length; i++) {
             if (items.excludedList[i] === item.websiteName) {
@@ -124,7 +140,7 @@ checkbox.addEventListener("change", function () {
         // remove website to exluded list
         browser.storage.local
             .get("websiteName")
-            .then(delateWebSiteName, onError);
+            .then(deleteWebSiteName, onError);
     }
     
     function sendMessage(tabs) {
@@ -147,9 +163,9 @@ checkbox.addEventListener("change", function () {
 
 button.addEventListener("click", function () {
     browser.storage.local.get("excludedList", function (items) {
-        items.excludedList = []; //reset       //browser.storage.session.clear();
-        browser.storage.local.set({ excludedList: items.excludedList });
-        //browser.storage.session.clear();
+        //items.excludedList = []; //reset       //browser.storage.session.clear();
+        //browser.storage.local.set({ excludedList: items.excludedList });
+        browser.storage.session.clear();
     });
 });
 

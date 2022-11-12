@@ -23,8 +23,8 @@ browser.storage.local.set({websiteName: data.websiteName});
 browser.storage.local.get('excludedList', function(items){
     let isExcludedSite = false;
     console.warn("item : " + items.excludedList);
-    if (items.excludedList == undefined)
-        items.excludedList = [];
+    //if (items.excludedList == undefined)
+    //    items.excludedList = [];
     for ( i = 0; i < items.excludedList.length; i ++){
         console.warn(items.excludedList[i]);
         if(items.excludedList[i] == data.websiteName)
