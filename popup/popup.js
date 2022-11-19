@@ -1,7 +1,7 @@
 console.log("load");
 
 /* --- get data from algorithme --- */
-/*
+/**
  * Set content popup cookie
  */
 browser.storage.local.get("updateView", function (items) {
@@ -10,8 +10,10 @@ browser.storage.local.get("updateView", function (items) {
     //browser.storage.local.remove('updateView');
 });
 
-/*
+/**
  * Set language
+ * Test if not initailized -> set navigator language
+ * Translate
  */
 browser.storage.local.get("locale", function (items) {
     console.info("locale : " + items.locale);
@@ -24,7 +26,7 @@ browser.storage.local.get("locale", function (items) {
     selectLanguage(items.locale);
 });
 
-/*
+/**
  * Set website name
  * Set switch enable/disable
  */
@@ -42,9 +44,13 @@ browser.storage.local.get("websiteName", function (item) {
     });
 });
 
+
+/** 
+ * Initialize excludedList of excluded websites 
+ */
 browser.storage.local.get("excludedList", function (items) {
     if(items.excludedList == undefined){
-        console.warn("excludedList: " + items.excludedList); //"excludedList: undefined"
+        console.warn("excludedList: " + items.excludedList);    //"excludedList: undefined"
         items.excludedList = [];
         browser.storage.local.set({ excludedList: items.excludedList });
     }    
