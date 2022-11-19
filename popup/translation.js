@@ -24,10 +24,14 @@ function selectLanguage(lang){
 function setLanguage(language) {
     console.log(language);
     const elements = document.getElementsByClassName("translate");
+    console.log(elements);
     for(i = 0; i < elements.length; i++){
         if(elements[i].tagName == "P")
             elements[i].innerHTML = language[elements[i].id];
         else
             elements[i].textContent = language[elements[i].id];
+
+        if(elements[i].tagName == "LABEL")
+            elements[i].title = language[elements[i].id + "_title"];
     }
 }

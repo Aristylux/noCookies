@@ -14,8 +14,11 @@ const locale_en =
 
     "title_settings_container": "Settings",
     "label_setting_hide_cookies": "Hide popups",
+    "label_setting_hide_cookies_title": "Erase windows only",
     "label_setting_accept_cookies": "Allow cookies",
+    "label_setting_accept_cookies_title": "(unavailable)",
     "label_setting_dontaccept_cookies": "Don't allow cookies",
+    "label_setting_dontaccept_cookies_title": "(unavailable)",
     "title_settings_container_languages": "Languages",
     "button_delete_data": "Delete data"
 }
