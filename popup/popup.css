@@ -164,6 +164,19 @@ form {
     box-shadow: inset 0 0 0 0.125em var(--primary-color);
 }
 
+.ligne-form .unavailable {
+    color: gray !important;
+}
+
+.ligne-form label.unavailable:before  {
+    box-shadow: inset 0 0 0 0.125em gray !important;
+}
+
+.ligne-form .unavailable:hover {
+    background-color: rgb(233, 232, 232) !important;
+    cursor: default !important;
+}
+
 /* ---------------- END Form ------------------- */
 
 .button {
