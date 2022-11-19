@@ -9,7 +9,18 @@ var data = {
 
 browser.runtime.onMessage.addListener((message) => {
     console.error(message);
-    document.location.reload();
+
+    switch (message.command) {
+        case "refresh":
+            document.location.reload();
+            break;
+    
+        case "gotToGithub":
+            //url = 'https://github.com';
+            //window.open(url, '_blank'); // Firefox block opened tab
+            window.location = ('https://github.com')
+            break;
+    }
 });
 
 var path = window.location.pathname;

@@ -63,10 +63,11 @@ let about_button = document.getElementById("nav_but_about");
 let setting_button = document.getElementById("nav_but_settings");
 
 /* --- Definition element Switch --- */
-let checkbox = document.getElementById("checkbox");
+let checkbox = document.getElementById('checkbox');
 
 /* --- Definition element Button --- */
-let button = document.getElementById("button_delete_data");
+let button_github = document.getElementById('button_view_source_code')
+let button_delete = document.getElementById('button_delete_data');
 
 /* ------- Events Listener -------- */
 /* --- Event element Container --- */
@@ -149,9 +150,30 @@ checkbox.addEventListener("change", function () {
             .then(deleteWebSiteName, onError);
     }
     
+    sendMessageToBrowser("refresh");
+});
+
+// ----- Button -----
+
+button_github.addEventListener("click", function () {
+    sendMessageToBrowser("gotToGithub");
+});
+
+button_delete.addEventListener("click", function () {
+    browser.storage.local.get("excludedList", function (items) {
+        //items.excludedList = []; //reset       //browser.storage.session.clear();
+        //browser.storage.local.set({ excludedList: items.excludedList });
+        browser.storage.session.clear();
+    });
+});
+
+console.log("End");
+
+function sendMessageToBrowser(message){
+
     function sendMessage(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
-            command: "refresh",
+            command: message,
         });
     }
 
@@ -163,16 +185,5 @@ checkbox.addEventListener("change", function () {
         .query({ active: true, currentWindow: true })
         .then(sendMessage)
         .catch(reportError);
-});
 
-// ----- Button -----
-
-button.addEventListener("click", function () {
-    browser.storage.local.get("excludedList", function (items) {
-        //items.excludedList = []; //reset       //browser.storage.session.clear();
-        //browser.storage.local.set({ excludedList: items.excludedList });
-        browser.storage.session.clear();
-    });
-});
-
-console.log("End");
+}
