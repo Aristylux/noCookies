@@ -118,7 +118,6 @@ form {
 
 .ligne-form {
     display: flex;
-    cursor: pointer;
     font-weight: 500;
     position: relative;
     overflow: hidden;
@@ -149,6 +148,7 @@ form {
 
 .ligne-form label:hover {
     background-color: var(--secondary-color-high);
+    cursor: pointer;
 }
 
 .ligne-form label:before {
