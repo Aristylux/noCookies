@@ -9,7 +9,7 @@ const locale_fr =
     "title_about_container": "A propos",
     "text_content_about_container": "Envie d'apprendre à faire une extension web,<br />Marre des demandes de cookies sur chaque site,<br />L'idée met venue comme ça.<br />",
     "title_github":"Projet",
-    "text_content_project_container": "Ce projet est disponible sur Github",
+    "text_content_project_container": "Ce projet est disponible sur Github.",
     "button_view_source_code": "Voir le code source",
     
     "title_settings_container": "Paramètres",

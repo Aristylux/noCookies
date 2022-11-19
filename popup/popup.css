@@ -99,6 +99,15 @@ a.active {
 
 /* ---------- END Nav ------- */
 
+/* ----- About ----- */
+
+#about_project_container {
+    display: grid;
+    grid-template-columns: auto 20%;
+}
+
+/* ----- Settings ----- */
+
 /* -------------- Form ---------- */
 
 form {
